@@ -104,7 +104,7 @@ const AllWithDrawalTable = () => {
                     </button>
                   </td>
                   <td className="whitespace-nowrap px-4  py-1.5 text-gray-700">
-                    <button className="ml-[8px]">
+                    <button className="ml-[7px]">
                       <MdDeleteForever
                         className="cursor-pointer text-red-500 hover:text-red-300"
                         size={25}
