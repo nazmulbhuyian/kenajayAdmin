@@ -38,15 +38,7 @@ const VariationModal = ({ setShowVariationModal, variationData }) => {
                     <td className='whitespace-nowrap px-4 py-5'>
                       Buying Price
                     </td>
-                    <td className='whitespace-nowrap px-4 py-5'>
-                      Reseller Price
-                    </td>
-                    <td className='whitespace-nowrap px-4 py-5'>
-                      WholeSeller Price
-                    </td>
-                    <td className='whitespace-nowrap px-4 py-5'>
-                      Wholeseller Min Quantity
-                    </td>
+                   
                     <td className='whitespace-nowrap px-4 py-5'>
                       Variant Quantity
                     </td>
@@ -82,18 +74,7 @@ const VariationModal = ({ setShowVariationModal, variationData }) => {
                       <td className='whitespace-nowrap py-1.5 font-medium text-gray-700'>
                         {item?.variation_buying_price}
                       </td>
-                      <td className='whitespace-nowrap py-1.5 font-medium text-gray-700'>
-                        {' '}
-                        {item?.variation_reseller_price}
-                      </td>
-                      <td className='whitespace-nowrap py-1.5 font-medium text-gray-700'>
-                        {' '}
-                        {item?.variation_wholeseller_price}
-                      </td>
-                      <td className='whitespace-nowrap py-1.5 font-medium text-gray-700'>
-                        {' '}
-                        {item?.variation_wholeseller_min_quantity}
-                      </td>
+                     
                       <td className='whitespace-nowrap py-1.5 font-medium text-gray-700'>
                         {item?.variation_quantity}
                       </td>

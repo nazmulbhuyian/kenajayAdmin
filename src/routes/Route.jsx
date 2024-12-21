@@ -31,6 +31,9 @@ import SupportPage from "../pages/SupportPage/SupportPage";
 import WithDrawlMethod from "../pages/WithdrawlMethodsPage/WithDrawlMethod";
 import ShopSettingsPage from "../pages/ShopSettingPage/ShopSettingsPage";
 import PrivateRoute from "./privateRoute/PrivateRoute";
+import ALLWithDrawlReqPage from "../pages/WithdrawlReqPage/ALLWithDrawlReqPage";
+import PendingWithDrawlReqPage from "../pages/WithdrawlReqPage/PendingWithdrawlReqPage";
+import SuccessWithDrawlReqPage from "../pages/WithdrawlReqPage/SuccessWithDrawlReqPage";
 
 const route = createBrowserRouter([
   {
@@ -179,6 +182,19 @@ const route = createBrowserRouter([
       {
         path: "/withdraw",
         element: <WithDrawlMethod />,
+      },
+      //......With Drawl Req Page....//
+      {
+        path: "/all-withdraw",
+        element: <ALLWithDrawlReqPage />,
+      },
+      {
+        path: "/pending-withdraw",
+        element: <PendingWithDrawlReqPage />,
+      },
+      {
+        path: "/success-withdraw",
+        element: <SuccessWithDrawlReqPage />,
       },
     ],
   },

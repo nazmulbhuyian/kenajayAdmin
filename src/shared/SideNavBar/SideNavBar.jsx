@@ -10,7 +10,7 @@ import {
   MdOutlineReviews,
   MdOutlineWhatshot,
 } from "react-icons/md";
-import { BiTask } from "react-icons/bi";
+import { BiMoneyWithdraw, BiTask } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
 import { GrAnnounce } from "react-icons/gr";
 import { BsChatSquareQuoteFill, BsShieldPlus } from "react-icons/bs";
@@ -218,10 +218,10 @@ const SideNavBar = () => {
             onClick={() => toggleDropdown("seller")}
           >
             <ChildMenuItem
-              to='/all-seller'
+              to="/all-seller"
               icon={FaAllergies}
-              label='All Seller'
-              isActive={isActive('/all-seller')}
+              label="All Seller"
+              isActive={isActive("/all-seller")}
             />
             <ChildMenuItem
               to="/seller-request"
@@ -308,6 +308,34 @@ const SideNavBar = () => {
             isActive={isActive("/withdraw")}
             onClick={closeAllDropdowns} // Close all dropdowns when clicked
           />
+          {/* WithDrawal Req */}
+
+          <DropdownMenu
+            label="Withdrawal Request"
+            icon={BiTask}
+            isOpen={activeDropdown === "WithdrawalRequest"}
+            onClick={() => toggleDropdown("WithdrawalRequest")}
+          >
+            <ChildMenuItem
+              to="/all-withdraw"
+              icon={BiMoneyWithdraw}
+              label="All WithDrawal"
+              isActive={isActive("/all-withdraw")}
+            />
+            <ChildMenuItem
+              to="/pending-withdraw"
+              icon={BiMoneyWithdraw}
+              label="Pending WithDrawal"
+              isActive={isActive("/pending-withdraw")}
+            />
+            <ChildMenuItem
+              to="/success-withdraw"
+              icon={BiMoneyWithdraw}
+              label="Success WithDrawal"
+              isActive={isActive("/success-withdraw")}
+              onClick={closeAllDropdowns}
+            />
+          </DropdownMenu>
         </ul>
       </div>
     </div>

@@ -78,8 +78,8 @@ const SignInPage = () => {
       }
     }
 
-    if (!data?.user_email && !user_phone) {
-      toast.error('Email Or Phone is required !', {
+    if (!user_phone) {
+      toast.error(' Phone is required !', {
         position: 'top-center',
         autoClose: 2000,
         hideProgressBar: false,
@@ -94,7 +94,7 @@ const SignInPage = () => {
     }
 
     const sendData = {
-      login_credentials: data?.user_email ? data?.user_email : user_phone,
+      user_phone: user_phone,
       user_password: data?.user_password,
     }
     try {
@@ -163,59 +163,41 @@ const SignInPage = () => {
                 }
               />
             </div>
-            <div className='flex items-center justify-between gap-4 my-2'>
-              <hr className='w-40' />
-              <p>OR</p>
-              <hr className='w-40' />
-            </div>
-            <div className='mt-2'>
-              <label htmlFor='user_email' className='label'>
-                <span className='label-text'>Email</span>
+
+            <div className='relative'>
+              <label
+                htmlFor='user_password'
+                className='block mt-2'
+              >
+                Password
               </label>
+
               <input
-                id='user_email'
-                type='email'
-                placeholder='login with email or phone number'
-                className='border rounded px-3 py-2 w-full'
-                {...register('user_email')}
+                {...register('user_password', {
+                  required: 'User Password is required',
+                })}
+                type={showPassword ? 'text' : 'password'} // Dynamic type based on state
+                id='user_password'
+                className='mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2'
               />
-              {errors.user_email && (
-                <p className='text-red-600'> {errors?.user_email?.message}</p>
+              {errors.user_password && (
+                <p className='text-red-600'>{errors.user_password?.message}</p>
               )}
+
+              {/* Eye icon for toggling password visibility */}
+              <div
+                className='absolute top-[42px] right-3 cursor-pointer'
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FaRegEye size={20} />
+                ) : (
+                  <FaRegEyeSlash size={20} />
+                )}
+              </div>
             </div>
           </div>
-          <div className='relative'>
-            <label
-              htmlFor='user_password'
-              className='block text-xs font-medium text-gray-700 mt-2'
-            >
-              Password
-            </label>
 
-            <input
-              {...register('user_password', {
-                required: 'User Password is required',
-              })}
-              type={showPassword ? 'text' : 'password'} // Dynamic type based on state
-              id='user_password'
-              className='mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2'
-            />
-            {errors.user_password && (
-              <p className='text-red-600'>{errors.user_password?.message}</p>
-            )}
-
-            {/* Eye icon for toggling password visibility */}
-            <div
-              className='absolute top-9 right-3 cursor-pointer'
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <FaRegEye size={20} />
-              ) : (
-                <FaRegEyeSlash size={20} />
-              )}
-            </div>
-          </div>
 
           <button
             className='px-10 py-2 text-textColor bg-primaryColor w-full opacity-100 hover:opacity-80 transition-opacity duration-200 ease-in-out rounded-full'
