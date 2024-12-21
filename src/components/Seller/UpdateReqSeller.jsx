@@ -102,7 +102,7 @@ const UpdateReqSeller = ({
     const sendData = {
       _id: updateModalValue?._id,
       user_name: data?.user_name,
-      user_email: data?.user_email,
+
       user_phone: user_phone,
       user_password: data?.user_password,
       role_id: data?.role_id,
@@ -111,7 +111,7 @@ const UpdateReqSeller = ({
       seller_request: false,
       commision_rate: data?.commision_rate,
       user_updated_by: user?._id,
-      login_credentials: data?.user_email ? data?.user_email : user_phone,
+      login_credentials: user_phone,
     };
     if (!sendData?.user_phone) {
       delete sendData?.user_phone;
@@ -208,28 +208,7 @@ const UpdateReqSeller = ({
               </p>
             )}
           </div>
-          <div>
-            <label
-              htmlFor="user_email"
-              className="block text-xs font-medium text-gray-700 mt-2"
-            >
-              User Email
-            </label>
 
-            <input
-              {...register("user_email")}
-              type="text"
-              id="user_email"
-              defaultValue={updateModalValue?.user_email}
-              placeholder="Enter user email"
-              className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
-            />
-            {errors.user_email && (
-              <p className="text-red-600 text-sm">
-                {errors.user_email?.message}
-              </p>
-            )}
-          </div>
           <div className="mt-2">
             <label htmlFor="user_phone">Phone</label>
             <PhoneInput
