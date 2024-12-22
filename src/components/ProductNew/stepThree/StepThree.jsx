@@ -21,6 +21,7 @@ const StepThree = ({
   const { user, loading } = useContext(AuthContext);
   const [saveAndPublish, setSaveAndPublish] = useState(true);
   const [product_supplier_id, setProduct_supplier_id] = useState();
+  const [product_returnable, setProduct_returnable] = useState(false);
 
   const { data: suppliers = [], isLoading: supplierLoading } = useQuery({
     queryKey: [
@@ -73,7 +74,7 @@ const StepThree = ({
     setValue("main_image", null);
   };
   // Handle file input change to show image preview
-  const  handleImageChange = (event) => {
+  const handleImageChange = (event) => {
     const files = event.target.files;
     if (files.length) {
       const previews = Array.from(files).map((file) =>
@@ -128,6 +129,10 @@ const StepThree = ({
 
   const handleDataPost = async (data) => {
     if (saveAndPublish == true) {
+      if (data?.product_returnable == true && !data?.product_returnable_days) {
+        toast.error("Error: Please fill in the product Returnable Days.");
+        return;
+      }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -279,8 +284,11 @@ const StepThree = ({
         });
         // setLoading(false)
       }
-    }
-    else {
+    } else {
+      if (data?.product_returnable == true && !data?.product_returnable_days) {
+        toast.error("Error: Please fill in the product Returnable Days.");
+        return;
+      }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -666,7 +674,6 @@ const StepThree = ({
           </div>
           {/* Image section end */}
           <div className=" grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
-            
             {/* Shipping Days */}
             <div className="">
               <label htmlFor="shipping_days" className="font-medium">
@@ -704,7 +711,7 @@ const StepThree = ({
             {/* Product Return */}
             <div className="">
               <label htmlFor="product_return" className="font-medium">
-                Product Return
+                Product Return Policy
               </label>
               <input
                 // defaultValue={stepOneDefaultdata?.product_return}
@@ -730,27 +737,62 @@ const StepThree = ({
                 className="block w-full p-2.5 outline-primaryColor text-gray-800 bg-white border border-gray-300 rounded-lg mt-2"
               />
             </div>
-          {/* Supplier Name */}
-          <div className=" space-y-2 my-4">
-            <label htmlFor="supplier_name" className="font-medium">
-              Supplier Name
-            </label>
+            {/* Supplier Name */}
+            <div className=" space-y-2 my-4">
+              <label htmlFor="supplier_name" className="font-medium">
+                Supplier Name
+              </label>
 
-            <Select
-              id="supplier_id"
-              name="supplier_id"
-              isClearable
-              aria-label="Select a Category"
-              options={suppliers?.data}
-              getOptionLabel={(x) => x?.supplier_name}
-              getOptionValue={(x) => x?._id}
-              onChange={(selectedOption) =>
-                setProduct_supplier_id(selectedOption?._id)
-              }
-            ></Select>
-          </div>
+              <Select
+                id="supplier_id"
+                name="supplier_id"
+                isClearable
+                aria-label="Select a Category"
+                options={suppliers?.data}
+                getOptionLabel={(x) => x?.supplier_name}
+                getOptionValue={(x) => x?._id}
+                onChange={(selectedOption) =>
+                  setProduct_supplier_id(selectedOption?._id)
+                }
+              ></Select>
+            </div>
           </div>
 
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            <div className="mt-4 flex items-center gap-2">
+              <input
+                {...register("product_returnable")}
+                id="product_returnable"
+                type="checkbox"
+                className="w-5 h-5"
+                onChange={() => setProduct_returnable(!product_returnable)} // Call handlePCBuilderChange when the checkbox is clicked
+              />
+              <label
+                htmlFor="product_returnable"
+                className="font-medium text-xl"
+              >
+                Product Returnable ?
+              </label>
+            </div>
+            {product_returnable == true && (
+              <div>
+                <label
+                  className="font-semibold"
+                  htmlFor="product_returnable_days"
+                >
+                  Product Returnable Days
+                </label>
+                <input
+                  placeholder="0000000"
+                  {...register("product_returnable_days")}
+                  id="product_returnable_days"
+                  min={1}
+                  type="number"
+                  className="block w-full px-2 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-xl"
+                />
+              </div>
+            )}
+          </div>
 
           {/* meta */}
           <div className="mt-8">

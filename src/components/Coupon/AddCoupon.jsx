@@ -89,15 +89,8 @@ const AddCoupon = ({ setOpenAddCouponModal, refetch }) => {
   // }
 
   const handleDataPost = async (data) => {
-    console.log(data)
-    
 
     setLoading(true)
-    if (data?.coupon_use_total_person < data?.coupon_use_per_person) {
-      toast.warn('Coupon Use Total Person is getter than Coupon Use Per Person')
-      setLoading(false)
-      return
-    }
     if (data?.coupon_type === 'percent' && data?.coupon_amount > 100) {
       toast.warn('Coupon Amount cannot be greater than 100 for percent type')
       setLoading(false)
@@ -312,7 +305,7 @@ const AddCoupon = ({ setOpenAddCouponModal, refetch }) => {
 
             <div>
               <label className='block text-xs font-medium text-gray-700'>
-                Coupon Type <span className='text-red-500'>*</span>
+                Coupon Type <span className='text-red-500'>(*per product)</span>
               </label>
               <select
                 {...register('coupon_type', {
@@ -331,7 +324,7 @@ const AddCoupon = ({ setOpenAddCouponModal, refetch }) => {
             </div>
             <div>
               <label className='block text-xs font-medium text-gray-700'>
-                Coupon Amount <span className='text-red-500'>*</span>
+                Coupon Amount <span className='text-red-500'>(*per product)</span>
               </label>
               <input
                 {...register('coupon_amount', {
@@ -349,7 +342,7 @@ const AddCoupon = ({ setOpenAddCouponModal, refetch }) => {
             <div>
               {' '}
               <label className='block text-xs font-medium text-gray-700'>
-                Coupon Max Amount <span className='text-red-500'>*</span>
+                Coupon Max Amount <span className='text-red-500'>(*per product)</span>
               </label>
               <input
                 {...register('coupon_max_amount', {
