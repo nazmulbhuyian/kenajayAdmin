@@ -34,6 +34,7 @@ import PrivateRoute from "./privateRoute/PrivateRoute";
 import ALLWithDrawlReqPage from "../pages/WithdrawlReqPage/ALLWithDrawlReqPage";
 import PendingWithDrawlReqPage from "../pages/WithdrawlReqPage/PendingWithdrawlReqPage";
 import SuccessWithDrawlReqPage from "../pages/WithdrawlReqPage/SuccessWithDrawlReqPage";
+import AddCoupon from "../components/Coupon/AddCoupon";
 
 const route = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const route = createBrowserRouter([
       {
         path: "/your-coupon",
         element: <YourCoupon />,
+      },
+      {
+        path: "/add-coupon",
+        element: <AddCoupon />,
       },
       //------Coupon End-----//
 
