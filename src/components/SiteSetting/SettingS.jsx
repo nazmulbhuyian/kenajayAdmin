@@ -5,6 +5,7 @@ import { BASE_URL } from "./../../utils/baseURL";
 import { LoaderOverlay } from "../common/loader/LoderOverley";
 import AddCommission from "./AddCommission";
 import PhoneCredential from "./PhoneCredential";
+import ShippingConFiguration from "./ShippingConFiguration";
 
 const SettingS = () => {
   const [activeNavButton, setActiveNavButton] = useState("commission");
@@ -142,6 +143,15 @@ const SettingS = () => {
         >
           Currency Symbol
         </button>
+        <button
+          className={`bg-primaryColor hover:bg-blue-500 duration-200  text-white p-2 font-medium   text-sm sm:text-base  ${
+            activeNavButton == "ShippingConfiguration" &&
+            "border-t-[4px]  border-blue-900"
+          }`}
+          onClick={() => handleNavButtonClick("ShippingConfiguration")}
+        >
+          Shipping Configuration
+        </button>
       </div>
 
       <div className="mt-6 min-w-[1150px]">
@@ -162,6 +172,12 @@ const SettingS = () => {
           <PhoneCredential
             refetch={refetch}
             initialAuthenticationData={getInitialAuthenticationData?.data[0]}
+          />
+        )}
+        {activeNavButton == "ShippingConfiguration" && (
+          <ShippingConFiguration
+            refetch={currencyRefetch}
+            getInitialCurrencyData={getInitialCurrencyData?.data[0]}
           />
         )}
       </div>
