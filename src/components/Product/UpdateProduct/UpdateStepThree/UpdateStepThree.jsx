@@ -21,6 +21,7 @@ const UpdateStepThree = ({
 }) => {
   const { user, loading } = useContext(AuthContext);
   const [saveAndPublish, setSaveAndPublish] = useState(true);
+  const [product_returnable, setProduct_returnable] = useState(stepThreeData?.product_returnable_days || false);
 
   const {
     register,
@@ -109,6 +110,10 @@ const UpdateStepThree = ({
 
   const handleDataPost = async (data) => {
     if (saveAndPublish == true) {
+      if (data?.product_returnable == true && !data?.product_returnable_days) {
+        toast.error("Error: Please fill in the product Returnable Days.");
+        return;
+      }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -294,6 +299,10 @@ const UpdateStepThree = ({
         // setLoading(false)
       }
     } else {
+      if (data?.product_returnable == true && !data?.product_returnable_days) {
+        toast.error("Error: Please fill in the product Returnable Days.");
+        return;
+      }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -753,6 +762,43 @@ const UpdateStepThree = ({
                 className="block w-full p-2.5 outline-primaryColor text-gray-800 bg-white border border-gray-300 rounded-lg mt-2"
               />
             </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            <div className="mt-4 flex items-center gap-2">
+              <input
+                {...register("product_returnable")}
+                id="product_returnable"
+                type="checkbox"
+                className="w-5 h-5"
+                onChange={() => setProduct_returnable(!product_returnable)} // Call handlePCBuilderChange when the checkbox is clicked
+              />
+              <label
+                htmlFor="product_returnable"
+                className="font-medium text-xl"
+              >
+                Product Returnable ?
+              </label>
+            </div>
+            {product_returnable == true && (
+              <div>
+                <label
+                  className="font-semibold"
+                  htmlFor="product_returnable_days"
+                >
+                  Product Returnable Days
+                </label>
+                <input
+                  placeholder="0000000"
+                  {...register("product_returnable_days")}
+                  defaultValue={stepThreeData?.product_returnable_days}
+                  id="product_returnable_days"
+                  min={1}
+                  type="number"
+                  className="block w-full px-2 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-xl"
+                />
+              </div>
+            )}
           </div>
 
           {/* meta */}
