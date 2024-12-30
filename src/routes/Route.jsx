@@ -35,6 +35,7 @@ import ALLWithDrawlReqPage from "../pages/WithdrawlReqPage/ALLWithDrawlReqPage";
 import PendingWithDrawlReqPage from "../pages/WithdrawlReqPage/PendingWithdrawlReqPage";
 import SuccessWithDrawlReqPage from "../pages/WithdrawlReqPage/SuccessWithDrawlReqPage";
 import AddCoupon from "../components/Coupon/AddCoupon";
+import OrderPage from "../pages/OrderPage/OrderPage";
 
 const route = createBrowserRouter([
   {
@@ -200,6 +201,11 @@ const route = createBrowserRouter([
       {
         path: "/success-withdraw",
         element: <SuccessWithDrawlReqPage />,
+      },
+      // ......Order.......//
+      {
+        path: "/order",
+        element: <OrderPage />,
       },
     ],
   },
