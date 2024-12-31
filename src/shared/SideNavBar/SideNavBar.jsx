@@ -289,13 +289,22 @@ const SideNavBar = () => {
             isActive={isActive("/support")}
             onClick={closeAllDropdowns} // Close all dropdowns when clicked
           />
-          <MenuItem
-            to="/order"
-            icon={FaBorderAll}
+
+          {/* ......Order....  */}
+          <DropdownMenu
             label="Order"
-            isActive={isActive("/order")}
-            onClick={closeAllDropdowns} // Close all dropdowns when clicked
-          />
+            icon={BiTask}
+            isOpen={activeDropdown === "Order"}
+            onClick={() => toggleDropdown("Order")}
+          >
+            <ChildMenuItem
+              to="/order"
+              icon={FaBorderAll}
+              label="Order List"
+              isActive={isActive("/order")}
+            />
+          </DropdownMenu>
+          {/* ...WithDraw.... */}
           <MenuItem
             to="/withdraw"
             icon={BsChatSquareQuoteFill}

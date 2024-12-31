@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import useDebounced from "../../hooks/useDebounced";
 import OrderTable from "../../components/Order/OrderTable";
+import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "../../utils/baseURL";
 
 const OrderPage = () => {
   const [limit, setLimit] = useState(10);
@@ -15,37 +17,32 @@ const OrderPage = () => {
     setSearchTerm(searchText);
   }, [searchText]);
 
-  // handle item search function....
-  //   const handleSearchValue = (value) => {
-  //     setSearchValue(value);
-  //     setLimit(10);
-  //     setPage(1);
-  //   };
+  //handle item search function....
+  const handleSearchValue = (value) => {
+    setSearchValue(value);
+    setLimit(10);
+    setPage(1);
+  };
 
-  //   const {
-  //     data: ordersData,
-  //     isLoading,
-  //     refetch,
-  //   } = useQuery({
-  //     queryKey: [
-  //       `/api/v1/supplier/${
-  //         user?.panel_owner_id ? user?.panel_owner_id : user?._id
-  //       }?page=${page}&limit=${limit}&searchTerm=${searchTerm}&role_type=staff_show`,
-  //     ],
-  //     queryFn: async () => {
-  //       const res = await fetch(
-  //         `${BASE_URL}/supplier/${
-  //           user?.panel_owner_id ? user?.panel_owner_id : user?._id
-  //         }?page=${page}&limit=${limit}&searchTerm=${searchTerm}&role_type=staff_show`,
-  //         {
-  //           credentials: "include",
-  //         }
-  //       );
-  //       const data = await res.json();
-  //       return data;
-  //     },
-    //   });
-    
+  const {
+    data: ordersData,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: [
+      `/api/v1/order/dashboard?page=${page}&limit=${limit}&searchTerm=${searchTerm}`,
+    ],
+    queryFn: async () => {
+      const res = await fetch(
+        `${BASE_URL}/order/dashboard?page=${page}&limit=${limit}&searchTerm=${searchTerm}`,
+        {
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   return (
     <div className="bg-white rounded py-6 px-4 shadow">
@@ -55,26 +52,26 @@ const OrderPage = () => {
         </div>
         <div></div>
       </div>
-      {/* <div className="mt-3">
+      <div className="mt-3 flex justify-end">
         <input
           type="text"
           defaultValue={searchTerm}
           onChange={(e) => handleSearchValue(e.target.value)}
-          placeholder="Search Supplier..."
+          placeholder="Search Order Invoice No..."
           className="w-full sm:w-[350px] px-4 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
         />
-      </div> */}
+      </div>
       {/* show All Order Table List Component*/}
       <OrderTable
-        //ordersData={ordersData?.data}
-        //refetch={refetch}
+        ordersData={ordersData?.data}
+        refetch={refetch}
         limit={limit}
         page={page}
         setPage={setPage}
         setLimit={setLimit}
-        //isLoading={isLoading}
+        isLoading={isLoading}
         user={user}
-        //totalData={ordersData?.totalData}
+        totalData={ordersData?.totalData}
       />
 
       {/* add all ReSeller modal component */}
