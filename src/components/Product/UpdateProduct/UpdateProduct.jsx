@@ -103,6 +103,7 @@ const UpdateProduct = ({ productData, refetch }) => {
     product_warrenty: productData?.product_warrenty || "",
     barcode: productData?.barcode || "",
     product_pre_order: productData?.product_pre_order || false,
+    product_returnable_days: productData?.product_returnable_days || 0,
   });
 
   return (
