@@ -6,11 +6,7 @@ import { LoaderOverlay } from "../common/loader/LoderOverley";
 const ViewAllOrderInfo = () => {
   const { id } = useParams();
 
-  const {
-    data: orders,
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: orders, isLoading } = useQuery({
     queryKey: [`/api/v1/order/${id}`],
     queryFn: async () => {
       const res = await fetch(`${BASE_URL}/order/${id}`, {
@@ -30,9 +26,15 @@ const ViewAllOrderInfo = () => {
       {/* Order Product */}
 
       <div className="">
-        {" "}
-        <div className="flex justify-between bg-[#fff9ee] p-2.5 shadow-md rounded">
+        <div className="flex justify-between bg-[#fff9ee] p-2.5 shadow-md rounded ">
           <p className="text-xl">Order Information</p>
+        </div>
+        <div className="bg-[#fff9ee] p-2.5 shadow-md rounded grid grid-cols-4 divide-x-2 divide-gray-800 mt-3 gap-4">
+          <div className="bg-red-400 px-4">name</div>
+
+          <div className="bg-blue-400  px-4">invice</div>
+          <div className="bg-purple-400  px-4">date issue</div>
+          <div className="bg-yellow-500  px-4">Total</div>
         </div>
         <div className="mt-3">
           {orders?.data?.order_products?.map((shop, index) => (
