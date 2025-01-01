@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { logo } from "../../utils/imageImport";
 import { Link, useLocation } from "react-router-dom";
 import {
-  MdHolidayVillage,
   MdOutlineAddchart,
   MdOutlineCampaign,
   MdOutlineFlashAuto,
-  MdOutlineRealEstateAgent,
   MdOutlineReviews,
-  MdOutlineWhatshot,
 } from "react-icons/md";
 import { BiMoneyWithdraw, BiTask } from "react-icons/bi";
 import { GoHome } from "react-icons/go";
@@ -20,24 +17,15 @@ import {
   PiUsersThree,
 } from "react-icons/pi";
 import { TbCategoryPlus } from "react-icons/tb";
-import { CiSquareQuestion } from "react-icons/ci";
-import { FiPackage, FiUsers } from "react-icons/fi";
+
+import { FiUsers } from "react-icons/fi";
 import { ChildMenuItem, DropdownMenu, MenuItem } from "./DropdownAndMenuItem";
-import {
-  IoGitPullRequestOutline,
-  IoLocationOutline,
-  IoSettings,
-} from "react-icons/io5";
-import { GiModernCity } from "react-icons/gi";
+import { IoSettings } from "react-icons/io5";
+
 import { RiCoupon3Line } from "react-icons/ri";
-import {
-  FaAllergies,
-  FaBorderAll,
-  FaShopify,
-  FaShopware,
-} from "react-icons/fa";
-import { FaUsersLine, FaUsers } from "react-icons/fa6";
-import { LuGitPullRequest } from "react-icons/lu";
+import { FaAllergies, FaBorderAll } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa6";
+
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { TfiLayoutSliderAlt } from "react-icons/tfi";
 
@@ -301,6 +289,22 @@ const SideNavBar = () => {
             isActive={isActive("/support")}
             onClick={closeAllDropdowns} // Close all dropdowns when clicked
           />
+
+          {/* ......Order....  */}
+          <DropdownMenu
+            label="Order"
+            icon={BiTask}
+            isOpen={activeDropdown === "Order"}
+            onClick={() => toggleDropdown("Order")}
+          >
+            <ChildMenuItem
+              to="/order"
+              icon={FaBorderAll}
+              label="Order List"
+              isActive={isActive("/order")}
+            />
+          </DropdownMenu>
+          {/* ...WithDraw.... */}
           <MenuItem
             to="/withdraw"
             icon={BsChatSquareQuoteFill}
