@@ -42,11 +42,11 @@ const OrderTable = ({
                   <td className="whitespace-nowrap p-4 ">Billing Address</td>
                   <td className="whitespace-nowrap p-4 ">Shipping Location</td>
                   <td className="whitespace-nowrap p-4 ">Verified Status</td>
+                  <td className="whitespace-nowrap p-4 ">View Details</td>
+                  <td className="whitespace-nowrap p-4 ">Discount Amount</td>
                   <td className="whitespace-nowrap p-4 ">Shipping Cost</td>
                   <td className="whitespace-nowrap p-4 ">Total Amount</td>
                   <td className="whitespace-nowrap p-4 ">Grand Total Amount</td>
-                  <td className="whitespace-nowrap p-4 ">Discount Amount</td>
-                  <td className="whitespace-nowrap p-4 ">View Details</td>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 text-center">
@@ -93,6 +93,19 @@ const OrderTable = ({
                         <span>Un-verified</span>
                       )}
                     </td>
+                    <td className="whitespace-nowrap p-4 flex justify-center">
+                      <Link
+                        to={`/all-order-info/${order?._id}`}
+                        className=" text-gray-500 hover:text-gray-900"
+                      >
+                        <FaRegEye size={23} />
+                      </Link>
+                    </td>
+
+                    <td className="whitespace-nowrap p-4">
+                      {" "}
+                      {order?.discount_amount}
+                    </td>
                     <td className="whitespace-nowrap p-4">
                       {" "}
                       {order?.shipping_cost}
@@ -104,18 +117,6 @@ const OrderTable = ({
                     <td className="whitespace-nowrap p-4">
                       {" "}
                       {order?.grand_total_amount}
-                    </td>
-                    <td className="whitespace-nowrap p-4">
-                      {" "}
-                      {order?.discount_amount}
-                    </td>
-                    <td className="whitespace-nowrap p-4 flex justify-center">
-                      <Link
-                        to={`/all-order-info/${order?._id}`}
-                        className=" text-gray-500 hover:text-gray-900"
-                      >
-                        <FaRegEye size={23} />
-                      </Link>
                     </td>
                   </tr>
                 ))}

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../utils/baseURL";
 import { LoaderOverlay } from "../common/loader/LoderOverley";
+import { DateFormate } from "../../utils/DateFormate/DateFormate";
 
 const ViewAllOrderInfo = () => {
   const { id } = useParams();
@@ -29,12 +30,38 @@ const ViewAllOrderInfo = () => {
         <div className="flex justify-between bg-[#fff9ee] p-2.5 shadow-md rounded ">
           <p className="text-xl">Order Information</p>
         </div>
-        <div className="bg-[#fff9ee] p-2.5 shadow-md rounded grid grid-cols-4 divide-x-2 divide-gray-800 mt-3 gap-4">
-          <div className="bg-red-400 px-4">name</div>
+        <div className="bg-[#fff9ee] p-2.5 shadow-md rounded grid grid-cols-4 divide-x-2 divide-gray-300 mt-3 gap-4">
+          <div className=" px-4">
+            <p className=" font-medium uppercase">Billing To</p>
+            <p className="font-medium text-xl">
+              {orders?.data?.order?.customer_id?.user_name}
+            </p>
+            <p className="">{orders?.data?.order?.customer_id?.user_phone}</p>
+            <p className="">{orders?.data?.order?.billing_address}</p>
+            <p className="">{orders?.data?.order?.billing_state}</p>
+          </div>
 
-          <div className="bg-blue-400  px-4">invice</div>
-          <div className="bg-purple-400  px-4">date issue</div>
-          <div className="bg-yellow-500  px-4">Total</div>
+          <div className=" px-4">
+            {" "}
+            <p className=" font-medium uppercase">Invoice Number</p>
+            <p className="font-medium text-xl">
+              {orders?.data?.order?.invoice_id}
+            </p>
+          </div>
+          <div className="  px-4">
+            {" "}
+            <p className=" font-medium uppercase">Date Issue</p>
+            <p className="font-medium text-xl">
+              {DateFormate(orders?.data?.order?.customer_id?.createdAt)}
+            </p>
+          </div>
+          <div className=" px-4">
+            {" "}
+            <p className=" font-medium uppercase">Total Amount</p>
+            <p className="font-medium text-xl">
+              ৳ {orders?.data?.order?.grand_total_amount}
+            </p>
+          </div>
         </div>
         <div className="mt-3">
           {orders?.data?.order_products?.map((shop, index) => (
@@ -110,17 +137,45 @@ const ViewAllOrderInfo = () => {
               </table>
               <div className="sm:text-right text-text-default mt-2.5 ">
                 <p className="text-sm">
-                  <strong>Shop Subtotal:</strong> ৳{shop?.sub_total_amount}
+                  <strong>Shop Subtotal : </strong> ৳{shop?.sub_total_amount}
                 </p>
                 <p className="text-sm">
-                  <strong>Discount Amount:</strong> ৳{shop?.discount_amount}
+                  <strong>Discount Amount : </strong> ৳{shop?.discount_amount}
                 </p>
                 <p className="text-sm">
-                  <strong>Grand Total:</strong> ৳{shop?.grand_total_amount}
+                  <strong>Grand Total : </strong> ৳{shop?.grand_total_amount}
                 </p>
               </div>
             </div>
           ))}
+        </div>
+        <div className="bg-[#fff9ee] p-2.5 shadow-md rounded  mt-3 gap-4 flex justify-end">
+          <div className="px-4 grid grid-cols-2 gap-x-10 gap-y-2">
+            <p className=" font-medium uppercase">Shipping Location</p>
+            <p className=" font-medium uppercase">
+              {orders?.data?.order?.shipping_location}
+            </p>
+            <p className=" font-medium uppercase">Shipping Cost</p>
+            <p className=" font-medium">
+              {" "}
+              ৳ {orders?.data?.order?.shipping_cost}
+            </p>
+            <p className=" font-medium uppercase">Discount</p>
+            <p className=" font-medium">
+              {" "}
+              ৳ {orders?.data?.order?.discount_amount}
+            </p>
+            <p className=" font-medium uppercase">Sub Total Amount</p>
+            <p className=" font-medium">
+              {" "}
+              ৳ {orders?.data?.order?.sub_total_amount}
+            </p>
+            <p className=" font-medium uppercase">Grand Total Amount</p>
+            <p className=" font-medium">
+              {" "}
+              ৳ {orders?.data?.order?.grand_total_amount}
+            </p>
+          </div>
         </div>
       </div>
 
