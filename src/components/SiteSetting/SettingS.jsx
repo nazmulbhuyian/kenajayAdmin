@@ -6,6 +6,7 @@ import { LoaderOverlay } from "../common/loader/LoderOverley";
 import AddCommission from "./AddCommission";
 import PhoneCredential from "./PhoneCredential";
 import ShippingConFiguration from "./ShippingConFiguration";
+import AllSiteSetting from "./SiteSetting/AllSiteSetting";
 
 const SettingS = () => {
   const [activeNavButton, setActiveNavButton] = useState("commission");
@@ -152,6 +153,15 @@ const SettingS = () => {
         >
           Shipping Configuration
         </button>
+        <button
+          className={`bg-primaryColor hover:bg-blue-500 duration-200  text-white p-2 font-medium   text-sm sm:text-base  ${
+            activeNavButton == "SiteSetting" &&
+            "border-t-[4px]  border-blue-900"
+          }`}
+          onClick={() => handleNavButtonClick("SiteSetting")}
+        >
+          Site Setting
+        </button>
       </div>
 
       <div className="mt-6 min-w-[1150px]">
@@ -180,6 +190,7 @@ const SettingS = () => {
             getInitialCurrencyData={getInitialCurrencyData?.data[0]}
           />
         )}
+        {activeNavButton == "SiteSetting" && <AllSiteSetting />}
       </div>
     </div>
   );
