@@ -1,3 +1,3 @@
-# Classic-eCommerce-Admin
+# KenaJay-eCommerce-Admin
 
-classic Ecomerce Admin
+KenaJay Ecomerce Admin
