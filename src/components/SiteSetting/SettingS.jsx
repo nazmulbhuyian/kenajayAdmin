@@ -114,6 +114,8 @@ const SettingS = () => {
     return <LoaderOverlay />;
   }
 
+  console.log("initialData : ", getInitialCurrencyData);
+
   return (
     <div>
       <div className="flex flex-wrap  gap-4 mt-8">
@@ -190,7 +192,12 @@ const SettingS = () => {
             getInitialCurrencyData={getInitialCurrencyData?.data[0]}
           />
         )}
-        {activeNavButton == "SiteSetting" && <AllSiteSetting />}
+        {activeNavButton == "SiteSetting" && (
+          <AllSiteSetting
+            refetch={currencyRefetch}
+            getInitialCurrencyData={getInitialCurrencyData?.data[0]}
+          />
+        )}
       </div>
     </div>
   );
