@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-const SoftwareInformation = () => {
+const StoreDetails = () => {
   const { register, handleSubmit } = useForm();
 
   const handleShippingPost = (data) => {
@@ -10,108 +10,78 @@ const SoftwareInformation = () => {
     <div>
       <form onSubmit={handleSubmit(handleShippingPost)} className="p-4">
         <div className="grid grid-cols-2 gap-4">
-          <div>
+          <div className="">
             <label
-              className="block text-xs font-medium text-gray-700"
-              htmlFor="logo"
-            >
-              Logo
-            </label>
-            <input
-              {...register("logo", {
-                validate: (value) => {
-                  if (value && value.length > 0) {
-                    return (
-                      value[0].type.startsWith("image/") ||
-                      "Only image files are allowed"
-                    );
-                  }
-                },
-              })}
-              id="logo"
-              type="file"
-              accept="image/*"
-              className="mt-2 w-full file:bg-blue-600 file:border-none file:text-white rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2 file:rounded cursor-pointer"
-            />
-          </div>
-          <div>
-            <label
-              className="block text-xs font-medium text-gray-700"
-              htmlFor="favicon"
-            >
-              Favicon
-            </label>
-            <input
-              {...register("favicon", {
-                validate: (value) => {
-                  if (value && value.length > 0) {
-                    return (
-                      value[0].type.startsWith("image/") ||
-                      "Only image files are allowed"
-                    );
-                  }
-                },
-              })}
-              id="favicon"
-              type="file"
-              accept="image/*"
-              className="mt-2 w-full file:bg-blue-600 file:border-none file:text-white rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2 file:rounded cursor-pointer"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor=""
+              htmlFor="facebook"
               className="block text-xs font-medium text-gray-700"
             >
-              Title
+              Facebook
             </label>
             <input
-              {...register("title")}
-              type="text"
-              placeholder="Enter Title"
+              {...register("facebook")}
+              type="url"
+              id="facebook"
+              placeholder="Enter Your Facebook Link"
               className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
             />
           </div>
           <div className="">
             <label
-              htmlFor=""
+              htmlFor="instagram"
               className="block text-xs font-medium text-gray-700"
             >
-              Contact Number
+              Instagram
             </label>
             <input
-              {...register("contact")}
-              type="number"
-              placeholder="Enter Contact Number"
+              {...register("instagram")}
+              type="url"
+              id="instagram"
+              placeholder="Enter Your Instagram Link"
               className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
             />
           </div>
           <div className="">
             <label
-              htmlFor=""
+              htmlFor="twitter"
               className="block text-xs font-medium text-gray-700"
             >
-              Email
+              Twitter
             </label>
             <input
-              {...register("email")}
-              type="email"
-              placeholder="Enter Email"
+              {...register("twitter")}
+              type="url"
+              id="twitter"
+              placeholder="Enter Your Twitter Link"
               className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
             />
           </div>
           <div className="">
             <label
-              htmlFor=""
+              htmlFor="you_tube"
               className="block text-xs font-medium text-gray-700"
             >
-              Address
+              Youtube
             </label>
             <input
-              {...register("address")}
-              type="text"
-              placeholder="Enter Address"
+              {...register("you_tube")}
+              type="url"
+              id="you_tube"
+              placeholder="Enter Your Youtube Link"
+              className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
+            />
+          </div>
+          <div className="">
+            <label
+              htmlFor="watsapp"
+              className="block text-xs font-medium text-gray-700"
+            >
+              WatsApp
+            </label>
+            <input
+              {...register("watsapp")}
+              type="url"
+              id="watsapp"
+              placeholder="Enter Your WatsApp Link"
               className="mt-2 w-full rounded-md border-gray-200 shadow-sm sm:text-sm p-2 border-2"
             />
           </div>
@@ -152,4 +122,4 @@ const SoftwareInformation = () => {
   );
 };
 
-export default SoftwareInformation;
+export default StoreDetails;
