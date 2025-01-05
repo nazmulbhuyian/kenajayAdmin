@@ -37,6 +37,7 @@ import SuccessWithDrawlReqPage from "../pages/WithdrawlReqPage/SuccessWithDrawlR
 import AddCoupon from "../components/Coupon/AddCoupon";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import ViewAllOrderInfo from "../components/Order/ViewAllOrderInfo";
+import SelfOrderPage from "../pages/SelfOrderPage/SelfOrderPage";
 
 const route = createBrowserRouter([
   {
@@ -207,6 +208,10 @@ const route = createBrowserRouter([
       {
         path: "/order",
         element: <OrderPage />,
+      },
+      {
+        path: "/self-order",
+        element: <SelfOrderPage />,
       },
       {
         path: "/all-order-info/:id",

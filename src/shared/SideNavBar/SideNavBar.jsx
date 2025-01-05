@@ -303,6 +303,12 @@ const SideNavBar = () => {
               label="Order List"
               isActive={isActive("/order")}
             />
+            <ChildMenuItem
+              to="/self-order"
+              icon={FaBorderAll}
+              label="Self Order"
+              isActive={isActive("/self-order")}
+            />
           </DropdownMenu>
           {/* ...WithDraw.... */}
           <MenuItem

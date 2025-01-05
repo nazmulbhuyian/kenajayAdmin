@@ -129,10 +129,10 @@ const StepThree = ({
 
   const handleDataPost = async (data) => {
     if (saveAndPublish == true) {
-      if (data?.product_returnable == true && !data?.product_returnable_days) {
-        toast.error("Error: Please fill in the product Returnable Days.");
-        return;
-      }
+      // if (data?.product_returnable == true && !data?.product_returnable_days) {
+      //   toast.error("Error: Please fill in the product Returnable Days.");
+      //   return;
+      // }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -285,10 +285,10 @@ const StepThree = ({
         // setLoading(false)
       }
     } else {
-      if (data?.product_returnable == true && !data?.product_returnable_days) {
-        toast.error("Error: Please fill in the product Returnable Days.");
-        return;
-      }
+      // if (data?.product_returnable == true && !data?.product_returnable_days) {
+      //   toast.error("Error: Please fill in the product Returnable Days.");
+      //   return;
+      // }
       if (!description) {
         toast.error("Description is required", {
           position: "top-center",
@@ -774,7 +774,7 @@ const StepThree = ({
                 Product Returnable ?
               </label>
             </div>
-            {product_returnable == true && (
+            {/* {product_returnable == true && (
               <div>
                 <label
                   className="font-semibold"
@@ -791,7 +791,7 @@ const StepThree = ({
                   className="block w-full px-2 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-xl"
                 />
               </div>
-            )}
+            )} */}
           </div>
 
           {/* meta */}
